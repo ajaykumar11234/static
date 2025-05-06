@@ -11,7 +11,11 @@ function App() {
   return (
     <CartProvider>
       <Header toggleCart={() => setShowCart(!showCart)} />
-      {showCart ? <Cart /> : <ProductList />}
+      {showCart ? (
+        <Cart goBack={() => setShowCart(false)} />
+      ) : (
+        <ProductList />
+      )}
     </CartProvider>
   );
 }

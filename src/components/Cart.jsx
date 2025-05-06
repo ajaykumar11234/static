@@ -1,13 +1,14 @@
 import { useCart } from '../context/CartContext';
 
-const Cart = () => {
+const Cart = ({ goBack }) => {
   const { cart, removeFromCart } = useCart();
-
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="cart">
       <h2>Your Cart</h2>
+      <button onClick={goBack} style={{ marginBottom: '1rem' }}>← Back to Products</button>
+
       {cart.length === 0 ? (
         <p>Cart is empty.</p>
       ) : (
