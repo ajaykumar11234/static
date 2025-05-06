@@ -1,16 +1,18 @@
-import './App.css';
+import { useState } from 'react';
+import Header from './components/Header';
+import ProductList from './components/ProductList';
+import Cart from './components/Cart';
+import { CartProvider } from './context/CartContext';
+import './index.css';
 
 function App() {
-  const handleClick = () => {
-    alert("Hello from Ajay! 👋");
-  };
+  const [showCart, setShowCart] = useState(false);
 
   return (
-    <div className="App">
-      <h1>Welcome to My React App</h1>
-      <p>This is a simple app deployed on Vercel.</p>
-      <button onClick={handleClick}>Click Me</button>
-    </div>
+    <CartProvider>
+      <Header toggleCart={() => setShowCart(!showCart)} />
+      {showCart ? <Cart /> : <ProductList />}
+    </CartProvider>
   );
 }
 
